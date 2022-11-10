@@ -6,7 +6,7 @@ export const ArtistCard = () => {
 
 
     return (
-        <View style={styles.container}>
+        <View className="flex-1 items-center justify-center bg-orange-100">
             <Text> text</Text>
         </View >
 
@@ -21,6 +21,4 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
     },
-
-
 })
