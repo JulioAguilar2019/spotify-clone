@@ -2,12 +2,15 @@ import { View, Text } from 'react-native'
 import React from 'react'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { HomeScreen, MyLibraryScreen, SearchScreen } from '../screens';
-import { Spotifytheme } from '../theme/Spotifytheme';
 import { FontAwesome } from '@expo/vector-icons';
+import useColorScheme from '../hooks/useColorScheme';
+import Colors from '../constants/Colors';
+
 
 const TabNavigator = createBottomTabNavigator();
 
 export const BottomTabNavigation = () => {
+    const colorScheme = useColorScheme();
 
 
     return (
@@ -15,9 +18,8 @@ export const BottomTabNavigation = () => {
         <TabNavigator.Navigator
             initialRouteName="HomeScreen"
             screenOptions={{
-                tabBarActiveTintColor: Spotifytheme.colors.primary,
+                tabBarActiveTintColor: Colors[colorScheme].tint,
             }}
-
         >
             <TabNavigator.Screen
                 name="HomeScreen"
