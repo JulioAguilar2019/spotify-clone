@@ -19,6 +19,7 @@ import TabTwoScreen from '../screens/TabTwoScreen';
 import { RootStackParamList, RootTabParamList, RootTabScreenProps } from '../../types';
 import LinkingConfiguration from './LinkingConfiguration';
 import { BottomTabNavigation } from './BottomTabNavigation';
+import { PlayerScreen } from '../screens';
 
 export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeName }) {
   return (
@@ -41,8 +42,8 @@ function RootNavigator() {
     <Stack.Navigator>
       <Stack.Screen name="Root" component={BottomTabNavigation} options={{ headerShown: false }} />
       <Stack.Screen name="NotFound" component={NotFoundScreen} options={{ title: 'Oops!' }} />
-      <Stack.Group screenOptions={{ presentation: 'modal' }}>
-        <Stack.Screen name="Modal" component={ModalScreen} />
+      <Stack.Group screenOptions={{ presentation: 'modal', animation: 'fade_from_bottom', headerShown: false }}>
+        <Stack.Screen name="PlayerScreen" component={PlayerScreen} />
       </Stack.Group>
     </Stack.Navigator>
   );

@@ -1,24 +1,15 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { View, Image, Text, TouchableOpacity } from 'react-native';
 import React from 'react'
-
+import img from '../../../assets/images/bb.jpg'
 
 export const ArtistCard = () => {
 
-
     return (
-        <View className="flex-1 items-center justify-center bg-orange-100">
-            <Text> text</Text>
-        </View >
-
+        <TouchableOpacity className="w-1/4 max-h-40 mx-2">
+            <Image source={img} className="w-24 h-24 rounded-full" />
+            <Text className='text-center' numberOfLines={1}>Bad Bunny</Text>
+        </TouchableOpacity >
     )
 }
 
-const styles = StyleSheet.create({
-    container: {
-        height: 110,
-        width: 100,
-        backgroundColor: 'red',
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-})
+
