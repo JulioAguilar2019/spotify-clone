@@ -2,18 +2,28 @@ import { View, ImageBackground, } from 'react-native';
 import React from 'react'
 import img from '../../assets/images/bb.jpg'
 import { BottomBarPlayer, TopBarPlayer } from '../Spotify/components';
+import { Track } from '../Interfaces';
+import { RootStackParamList } from '../../types';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
 
 
-export const PlayerScreen = () => {
+interface Props extends NativeStackScreenProps<RootStackParamList, 'PlayerScreen'> {
+
+}
+
+export const PlayerScreen = ({ route }: Props) => {
+
+    const { params } = route
+
 
     return (
         <ImageBackground
-            source={img}
-            className='w-full h-full'
+            source={{ uri: params?.album?.images[0]?.url }}
+            className='w-full h-full bg-cover'
         >
             <View className='w-full h-full bg-black opacity-75'>
-                <TopBarPlayer />
-                <BottomBarPlayer />
+                <TopBarPlayer name={params?.artists[0]?.name} />
+                <BottomBarPlayer trackName={params?.name} artistName={params?.artists[0]?.name} duration={params?.duration_ms} />
             </View>
         </ImageBackground>
     )

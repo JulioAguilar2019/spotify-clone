@@ -3,19 +3,32 @@ import React from 'react'
 import { AntDesign } from '@expo/vector-icons';
 import { FontAwesome } from '@expo/vector-icons';
 import { Feather } from '@expo/vector-icons';
+import { useFormatTime } from '../hooks/useFormatTime';
 
-export const BottomBarPlayer = () => {
+
+interface Props {
+    trackName: string | undefined
+    artistName: string | undefined
+    duration: number | undefined
+}
+
+
+export const BottomBarPlayer = ({ trackName, artistName, duration }: Props) => {
+
+    const finalDuration = useFormatTime(duration)
+
+
     return (
         <View className='flex flex-col w-full h-2/6 absolute bottom-0 left-0 right-0 p-5'>
             <View className='mb-2'>
-                <Text className='font-bold text-white'>Yo perro sola</Text>
-                <Text className='text-white'>Bad Bunny</Text>
+                <Text className='font-bold text-white'>{trackName}</Text>
+                <Text className='text-white'>{artistName}</Text>
             </View>
             <View>
                 <Text className='text-center text-white'>Aqui debe ir el slider</Text>
                 <View className='flex flex-row justify-between'>
                     <Text className='text-white'>0:00</Text>
-                    <Text className='text-white'>3:00</Text>
+                    <Text className='text-white'>{finalDuration}</Text>
                 </View>
             </View>
             <View>

@@ -21,14 +21,6 @@ export const BottomTabNavigation = () => {
             screenOptions={{
                 tabBarActiveTintColor: Colors[colorScheme].tint,
                 tabBarHideOnKeyboard: true,
-                tabBarStyle: {
-                    position: 'absolute',
-                    backgroundColor: 'rgba(0,0,0,0.3)',
-                    borderTopWidth: 0,
-                    elevation: 0,
-
-
-                },
 
             }}
         >

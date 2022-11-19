@@ -1,9 +1,12 @@
-export interface Tracks {
+export interface RecentlyI {
   items: Item[];
   next: string;
   cursors: Cursors;
   limit: number;
   href: string;
+}
+export interface TracksI {
+  tracks: Track[];
 }
 
 export interface Cursors {

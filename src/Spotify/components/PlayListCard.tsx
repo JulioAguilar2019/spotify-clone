@@ -14,12 +14,12 @@ export const PlayListCard = ({ data }: Props) => {
         <FlatList
             data={data?.items}
             renderItem={({ item: dataPlayList }) => (
-                <View className='min-w-[180] max-h-[200]  bg-cover mx-2 bg-orange-100'>
+                <View className='min-w-[180] max-h-[200]  bg-cover mx-2 '>
                     <TouchableOpacity
                         onPress={() => navigation.navigate('PlayListScreen')}
                     >
                         <Image source={{ uri: dataPlayList?.images[0].url }} className='w-full h-[90%] rounded-lg bg-cover' />
-                        <Text className='text-center' numberOfLines={2}>{dataPlayList?.name}</Text>
+                        <Text className='text-center' numberOfLines={1}>{dataPlayList?.name}</Text>
                     </TouchableOpacity>
                 </View>
             )}

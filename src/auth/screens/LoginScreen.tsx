@@ -14,7 +14,7 @@ export const LoginScreen = () => {
     useEffect(() => {
         const setToken = async () => {
             const token = await getToken()
-            console.log(token)
+            // console.log(token)
         }
         setToken()
 

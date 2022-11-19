@@ -2,13 +2,12 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { getToken } from '../auth/hooks/useSpotifyAuth';
 import { User } from '../store/authSlices';
 import {
-  ArtistElement,
   ArtistI,
   NewReleases,
   PlayList,
   Search,
-  Tracks,
-  TracksItem,
+  RecentlyI,
+  TracksI,
 } from '../Interfaces';
 
 // const getToken2 = async () => {
@@ -19,7 +18,7 @@ import {
 // getToken2();
 
 const token =
-  'BQCrDHj04Jr5NEMpYYjPiVqzJQTtx45yzuBjUDMV5s7hKcpCevx2Ois1Hzj3BrsGiYOQqRoRZV5D_bQ19NQmfPLbrhyQPOOnvk26El9sCDdnkb0u-5qUuIS4zvYi4a9a_DlZWeCVRN_xNJ7eE-YvgsleNoDJUBfHFruAg8s0wR-Z_os4A-0-XQ';
+  'BQC6o6vNnREoojvYh0lmf6Ubl1dMQ1ZK3pmUNU81ce1ebCMZ8KyWyOqVT7ESVni_QFZG4Vx9IVS_rKfMnfjIMhCn88_vQzCIq_7rKG-X9yODCov6Z0GSjoBsAzW1VLYEJeyhHwfhZ4UYT2WmM2dz8WuZlMrvGk6A_U-aStRV7sW8nwGQWKGTDw';
 export const spotifyApi = createApi({
   reducerPath: 'spotifyApi',
   baseQuery: fetchBaseQuery({
@@ -41,11 +40,14 @@ export const spotifyApi = createApi({
     getUserData: builder.query<User, void>({
       query: () => `/me`,
     }),
-    getArtists: builder.query<ArtistElement, string>({
+    getArtists: builder.query<ArtistI, string>({
       query: (ids: string) => `/artists/?ids=${ids}`,
     }),
-    getRecentlyPlayed: builder.query<Tracks, void>({
+    getRecentlyPlayed: builder.query<RecentlyI, void>({
       query: () => `/me/player/recently-played`,
+    }),
+    getTracks: builder.query<TracksI, string>({
+      query: (ids: string) => `/tracks/?ids=${ids}`,
     }),
   }),
 });
@@ -57,4 +59,5 @@ export const {
   useGetUserDataQuery,
   useGetArtistsQuery,
   useGetRecentlyPlayedQuery,
+  useGetTracksQuery,
 } = spotifyApi;
