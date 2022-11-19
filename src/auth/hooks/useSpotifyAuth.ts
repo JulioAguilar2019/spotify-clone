@@ -40,7 +40,7 @@ export function useSpotifyAuth() {
         'user-follow-modify',
       ],
       usePKCE: false,
-      redirectUri: 'exp://192.168.0.9:19000',
+      redirectUri: 'exp://192.168.0.4:19000',
     },
     discovery
   );
@@ -48,7 +48,8 @@ export function useSpotifyAuth() {
   useEffect(() => {
     if (response?.type === 'success') {
       const { access_token } = response.params;
-      storeData(access_token);
+      // storeData(access_token);
+      console.log(response);
     }
   }, [response]);
 
@@ -62,3 +63,12 @@ export function useSpotifyAuth() {
 
   return { request, promptAsync };
 }
+
+export const getToken = async () => {
+  try {
+    const token = (await AsyncStorage.getItem('@access_token')) || null;
+    return token;
+  } catch (e) {
+    console.error('Error retrieving data', e);
+  }
+};

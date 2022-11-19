@@ -9,23 +9,41 @@ import { NavigationContainer, DefaultTheme, DarkTheme } from '@react-navigation/
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import * as React from 'react';
 import { ColorSchemeName, Pressable } from 'react-native';
-
+import { View } from 'react-native';
 import Colors from '../constants/Colors';
 import useColorScheme from '../hooks/useColorScheme';
-import ModalScreen from '../screens/ModalScreen';
-import NotFoundScreen from '../screens/NotFoundScreen';
 import TabOneScreen from '../screens/TabOneScreen';
 import TabTwoScreen from '../screens/TabTwoScreen';
-import { RootStackParamList, RootTabParamList, RootTabScreenProps } from '../../types';
+import { RootStackParamList, RootTabParamList, RootTabScreenProps, RootPublicStackParamList } from '../../types';
 import LinkingConfiguration from './LinkingConfiguration';
 import { BottomTabNavigation } from './BottomTabNavigation';
-import { PlayerScreen } from '../screens';
+import { PlayerScreen, PlayListScreen } from '../screens';
+import { useSpotifyAuth, getToken } from '../auth/hooks/useSpotifyAuth';
+import { useEffect } from 'react';
+import { useAppSelector, RootState, useAppDispatch } from '../store/store';
+import { LoginScreen } from '../auth/screens/LoginScreen';
+import { setToken } from '../store/authSlices';
 
 export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeName }) {
+  // const token = useAppSelector((state: RootState) => state.auth.token)
+  const dispatch = useAppDispatch()
+  useEffect(() => {
+    const SetToken2 = async () => {
+      const token = await getToken()
+      dispatch(setToken({
+        token: 'BQDF3YAQ38UA26pQpP8eFBylcJTwt5F7euvv4aHe5_b6ompxrSUXePpm0zyPsiLMs3tbrJ8RcNUmHdvxGmami1LoyOSyoIXaxX3t5TT05Y03hDRSSL6RO84NHTGFTpWm7OQjB'
+      }))
+    }
+    SetToken2()
+
+  }, [])
   return (
     <NavigationContainer
       linking={LinkingConfiguration}
       theme={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
+      {/* {
+        token ? <RootNavigator /> : <PublicStack />
+      } */}
       <RootNavigator />
     </NavigationContainer>
   );
@@ -35,15 +53,35 @@ export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeNa
  * A root stack navigator is often used for displaying modals on top of all other content.
  * https://reactnavigation.org/docs/modal
  */
+
+
+const stackPublic = createNativeStackNavigator<RootPublicStackParamList>();
+
+function PublicStack() {
+  return (
+    <stackPublic.Navigator
+      initialRouteName='Login'>
+      <stackPublic.Screen
+
+        name="Login"
+        component={LoginScreen}
+        options={{ headerShown: false }}
+      />
+    </stackPublic.Navigator>
+  )
+}
+
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
 function RootNavigator() {
+
   return (
     <Stack.Navigator>
       <Stack.Screen name="Root" component={BottomTabNavigation} options={{ headerShown: false }} />
-      <Stack.Screen name="NotFound" component={NotFoundScreen} options={{ title: 'Oops!' }} />
+      {/* <Stack.Screen name="NotFound" component={NotFoundScreen} options={{ title: 'Oops!' }} /> */}
       <Stack.Group screenOptions={{ presentation: 'modal', animation: 'fade_from_bottom', headerShown: false }}>
         <Stack.Screen name="PlayerScreen" component={PlayerScreen} />
+        <Stack.Screen name="PlayListScreen" component={PlayListScreen} />
       </Stack.Group>
     </Stack.Navigator>
   );
@@ -61,8 +99,10 @@ function BottomTabNavigator() {
   return (
     <BottomTab.Navigator
       initialRouteName="TabOne"
+
       screenOptions={{
         tabBarActiveTintColor: Colors[colorScheme].tint,
+
       }}>
       <BottomTab.Screen
         name="TabOne"
@@ -84,6 +124,7 @@ function BottomTabNavigator() {
               />
             </Pressable>
           ),
+
         })}
       />
       <BottomTab.Screen

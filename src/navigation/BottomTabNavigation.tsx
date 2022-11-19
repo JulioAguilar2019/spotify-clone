@@ -5,6 +5,7 @@ import { HomeScreen, MyLibraryScreen, SearchScreen } from '../screens';
 import { FontAwesome } from '@expo/vector-icons';
 import useColorScheme from '../hooks/useColorScheme';
 import Colors from '../constants/Colors';
+import { LoginScreen } from '../auth/screens/LoginScreen';
 
 
 const TabNavigator = createBottomTabNavigator();
@@ -19,6 +20,16 @@ export const BottomTabNavigation = () => {
             initialRouteName="HomeScreen"
             screenOptions={{
                 tabBarActiveTintColor: Colors[colorScheme].tint,
+                tabBarHideOnKeyboard: true,
+                tabBarStyle: {
+                    position: 'absolute',
+                    backgroundColor: 'rgba(0,0,0,0.3)',
+                    borderTopWidth: 0,
+                    elevation: 0,
+
+
+                },
+
             }}
         >
             <TabNavigator.Screen
@@ -42,7 +53,7 @@ export const BottomTabNavigation = () => {
             <TabNavigator.Screen
 
                 name="MyLibraryScreen"
-                component={MyLibraryScreen}
+                component={LoginScreen}
                 options={{
                     title: 'My Library',
                     headerShown: false,
