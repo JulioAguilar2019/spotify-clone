@@ -13,9 +13,9 @@ export const LoginScreen = () => {
     return (
         <Container>
             <View>
-                <Text className='text-center'>Hello Again</Text>
-                <Text className='text-center'>Welcome back you've been miseed!</Text>
-                <TouchableOpacity onPress={() => promptAsync()} className='p-5 bg-orange-300'><Text className='text-center'> Login xd</Text></TouchableOpacity>
+                <Text className='text-center font-bold text-lg'>Hello Again</Text>
+                <Text className='text-center font-bold text-lg'>Welcome back you've been miseed!</Text>
+                <TouchableOpacity onPress={() => promptAsync()} className='p-5 bg-orange-300'><Text className='text-center'>Login </Text></TouchableOpacity>
             </View>
         </Container>
     )

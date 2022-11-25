@@ -9,7 +9,6 @@ import { useState } from 'react';
 export const SearchScreen = () => {
 
     const [search, setSearch] = useState<string>('')
-
     return (
 
         <Container>

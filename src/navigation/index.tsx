@@ -30,7 +30,7 @@ export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeNa
 
 
   const { error } = useGetUserDataQuery()
-
+  // console.log(isError, error)
   return (
     <NavigationContainer
       linking={LinkingConfiguration}

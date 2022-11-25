@@ -27,6 +27,7 @@ export const TrackCard = () => {
             )}
             horizontal
             showsHorizontalScrollIndicator={false}
+            keyExtractor={(item, index) => index.toString()}
         >
         </FlatList>
 

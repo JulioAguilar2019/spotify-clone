@@ -28,15 +28,16 @@ import { useAppSelector } from '../store';
 // };
 
 interface StateTracks {
-  trackId: string;
+  trackPlayList: string;
   deviceId: string;
   position_ms: number;
+  position: number;
 }
 
 // const token = getToken().then((token) => token);
 // console.log(token);
 const token =
-  'BQBuwjtyogN4Dca2cpwhx0magMopSS2jPsjDApHc55Wlcc2RugwZnEdPGfw1SHyyNOjm81lzUPkcvX5m06mfLQ8Ccf9LceoKeG6kuoq-OeOtr1kZPYHk8c7OYnih5hrII3pZ4WDEvslpMn6Fo7i4FTaI_UQbKqB7OoZ18wqJejdsUseLUcPqOplf2Oemy9K-NRKP3FCfXgktRDwAwmJsQMVo_9vKExmbCM1VQhvr_OB9QJHatmjqVCOeeR5USQ5DzF6y13z8oLe-bvY7qaPGKO80sr_eRVPku3CgK76U-90E36AvRTkxyv7fRg';
+  'BQDNmwHkQeozNrMTSJCxCdqnA5IePHMV7g7AuLBTtWO6pb97-4W1GajH3HmM3OjlP9S0asQw5EBIoEe87eGpX1uqOFYXPYUZMs5AxFRiGh1h6HYYX9Tcl_ywYDcaEp_LRvFhqbXdt2hoz1EQHBq3cVW9AGObA3KkIh7GxU1GfMftilxDbi9VC4CJpAvIGuV6BoTqLOr60_wNUJ9i7r_AKBYu5f6xWO8VnV5Tyw6oGTzOB0wP3AgNZV6LHdyKeSj11foCjz5ZdsdV17bggLJNhNJZlozPDMfrlfwMLybil42IrHDmAZExFPXJ8w';
 
 export const spotifyApi = createApi({
   reducerPath: 'spotifyApi',
@@ -76,6 +77,9 @@ export const spotifyApi = createApi({
     getPlayer: builder.query<void, void>({
       query: () => `/me/player`,
     }),
+    getCurrentlyPlaying: builder.query<void, void>({
+      query: () => `/me/player/currently-playing`,
+    }),
     nextTrack: builder.mutation<void, void>({
       query: () => ({
         url: `/me/player/next`,
@@ -94,12 +98,15 @@ export const spotifyApi = createApi({
         method: 'PUT',
       }),
     }),
-    PlayTrack: builder.mutation<DevicesI, StateTracks>({
+    playSong: builder.mutation<DevicesI, StateTracks>({
       query: (payload: StateTracks) => ({
         url: `/me/player/play?device_id=${payload.deviceId}`,
         method: 'PUT',
         body: {
-          uris: [payload.trackId],
+          context_uri: payload.trackPlayList,
+          offset: {
+            position: payload.position,
+          },
           position_ms: payload.position_ms,
         },
       }),
@@ -118,9 +125,11 @@ export const {
   useGetAvailableDevicesQuery,
   useGetPlayerQuery,
   useGetPlayListTracksQuery,
-  usePlayTrackMutation,
+  useLazyGetCurrentlyPlayingQuery,
+  usePlaySongMutation,
   usePauseMutation,
   useNextTrackMutation,
   usePreviousTrackMutation,
   useLazyGetPlayerQuery,
+  useLazyGetTracksQuery,
 } = spotifyApi;
