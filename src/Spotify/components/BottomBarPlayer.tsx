@@ -6,7 +6,7 @@ import { Feather } from '@expo/vector-icons';
 import { useFormatTime } from '../hooks/useFormatTime';
 import { TrackPlayList } from '../../Interfaces';
 import { useGetAvailableDevicesQuery, useLazyGetPlayerQuery, useNextTrackMutation, usePauseMutation, usePlayTrackMutation, usePreviousTrackMutation } from '../../api/spotifyApi';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 
 interface Props {
@@ -15,19 +15,23 @@ interface Props {
 
 export const BottomBarPlayer = ({ data }: Props) => {
 
-
     const finalDuration = useFormatTime(data!.duration_ms)
     const { data: devicesData } = useGetAvailableDevicesQuery()
     // console.log(devicesData)
     // handlePlay(handleplayData)
 
     const [fetchPlayer, { data: playerData }] = useLazyGetPlayerQuery()
+    const [isPlaying, setIsPlaying] = useState<Boolean>(playerData?.is_playing)
+
+    useEffect(() => {
+        fetchPlayer()
+    }, [isPlaying])
 
     const [handlePlay, { error, data: dataPlay }] = usePlayTrackMutation()
 
     const handleplayData =
     {
-        deviceId: devicesData?.devices[1]?.id,
+        deviceId: devicesData?.devices[0]?.id,
         trackId: data?.uri,
         position_ms: playerData?.progress_ms
 
@@ -37,8 +41,8 @@ export const BottomBarPlayer = ({ data }: Props) => {
     const [handlePrevious] = usePreviousTrackMutation()
 
     const togglePLayer = () => {
-        fetchPlayer()
-        playerData?.is_playing ? handlePause() : handlePlay(handleplayData)
+        isPlaying ? handlePause() : handlePlay(handleplayData)
+        setIsPlaying(!isPlaying)
     }
     // console.log(playerData.is_playing)
 

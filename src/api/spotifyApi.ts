@@ -36,7 +36,7 @@ interface StateTracks {
 // const token = getToken().then((token) => token);
 // console.log(token);
 const token =
-  'BQCO9M4-fdBJc0vZF8MdJ6tCzxlDvWJkQAuGqr_s1Rm740EvFPCm-VJVQkhsPyM9ibzMNNLPHsUawctPFak7h5NaHDVMbIHf4_5UtkWw1lLrmHSNF0Ce159d2rYpWyGLVG2T1S0JTt-WGf6PlpwVW-fetb2uzWzzVNyz6SsuSGlsXcCKZekW9yYl7J0iFSLOBrWOf_V0sutFxgIn_FNa0wYAqsJAKGPFPqPWj_LpEecnl4g3KfD8fg5-EvrrAk1caf7KVQMS2bK9ytSoxgOMQGxVFXVRp-Q_yi2Spva8F10v_syICgRYPdFZ7w';
+  'BQBuwjtyogN4Dca2cpwhx0magMopSS2jPsjDApHc55Wlcc2RugwZnEdPGfw1SHyyNOjm81lzUPkcvX5m06mfLQ8Ccf9LceoKeG6kuoq-OeOtr1kZPYHk8c7OYnih5hrII3pZ4WDEvslpMn6Fo7i4FTaI_UQbKqB7OoZ18wqJejdsUseLUcPqOplf2Oemy9K-NRKP3FCfXgktRDwAwmJsQMVo_9vKExmbCM1VQhvr_OB9QJHatmjqVCOeeR5USQ5DzF6y13z8oLe-bvY7qaPGKO80sr_eRVPku3CgK76U-90E36AvRTkxyv7fRg';
 
 export const spotifyApi = createApi({
   reducerPath: 'spotifyApi',
