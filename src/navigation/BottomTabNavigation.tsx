@@ -42,16 +42,6 @@ export const BottomTabNavigation = () => {
                     tabBarIcon: ({ color }) => <TabBarIcon name="search" color={color} />,
                 }}
             />
-            <TabNavigator.Screen
-
-                name="MyLibraryScreen"
-                component={MyLibraryScreen}
-                options={{
-                    title: 'My Library',
-                    headerShown: false,
-                    tabBarIcon: ({ color }) => <TabBarIcon name="bookmark-o" color={color} />,
-                }}
-            />
         </TabNavigator.Navigator>
 
     )

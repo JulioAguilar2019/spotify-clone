@@ -14,7 +14,7 @@ export const SearchScreen = () => {
 
     const [search, setSearch] = useState<string>('')
 
-    const [getSearch, { data, error, isLoading }] = useLazyGetSearchQuery()
+    const [getSearch, { data, error, isFetching }] = useLazyGetSearchQuery()
 
     const onSearchSubmit = () => {
         if (search != undefined || search != '') {
@@ -31,7 +31,7 @@ export const SearchScreen = () => {
             </View>
 
             {
-                isLoading ? <Loader></Loader> :
+                isFetching ? <Loader></Loader> :
                 <View>
                     <View className={'flex flex-col'}>
                         <Text className={'text-2xl font-bold mb-3'}>Artists</Text>
