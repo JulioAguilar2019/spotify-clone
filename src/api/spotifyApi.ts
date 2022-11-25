@@ -36,7 +36,7 @@ interface StateTracks {
 // const token = getToken().then((token) => token);
 // console.log(token);
 const token =
-  'BQBuwjtyogN4Dca2cpwhx0magMopSS2jPsjDApHc55Wlcc2RugwZnEdPGfw1SHyyNOjm81lzUPkcvX5m06mfLQ8Ccf9LceoKeG6kuoq-OeOtr1kZPYHk8c7OYnih5hrII3pZ4WDEvslpMn6Fo7i4FTaI_UQbKqB7OoZ18wqJejdsUseLUcPqOplf2Oemy9K-NRKP3FCfXgktRDwAwmJsQMVo_9vKExmbCM1VQhvr_OB9QJHatmjqVCOeeR5USQ5DzF6y13z8oLe-bvY7qaPGKO80sr_eRVPku3CgK76U-90E36AvRTkxyv7fRg';
+  'BQBU34-0MBGIL6PukdGmUconKyfzTuMM92ULPyITquI4vBpr5vE9iQU2cdaZu2yxnIOB_aF1rd-vqRSE24wbOYbV8jsc2xSc5z-yuz37e3EudfHXm6erQPfUEmYv1uzCN74bX0JIk9nPHcYcLJEchYTk1HBnUisXXkSeFdgcSSitC2vwPFJccplwdrDhm2kGQDPql_WyBmzX-Q3b5uM7mHx4SwhAR2LsUqYCRQFKUUfe83ULHknStazqW1jGYAsiC7pecdcLMtZqo_zdUyuZxR2vhrEZMVkRFziVL3whwW7rNKOWESOEXA';
 
 export const spotifyApi = createApi({
   reducerPath: 'spotifyApi',
@@ -123,4 +123,5 @@ export const {
   useNextTrackMutation,
   usePreviousTrackMutation,
   useLazyGetPlayerQuery,
+  useLazyGetSearchQuery,
 } = spotifyApi;

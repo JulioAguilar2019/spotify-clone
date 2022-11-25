@@ -29,7 +29,7 @@ import { useGetUserDataQuery } from '../api/spotifyApi';
 export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeName }) {
 
 
-  const { error } = useGetUserDataQuery()
+  const { error, status } = useGetUserDataQuery()
 
   return (
     <NavigationContainer

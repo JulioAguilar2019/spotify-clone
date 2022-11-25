@@ -38,7 +38,7 @@ export const PlayListScreen = ({ route }: Props) => {
                     </TouchableOpacity>
                 </View>
             </ImageBackground>
-            <View className='mx-4 flex flex-row py-2 items-center'>
+            <View className='mx-4 flex flex-row py-2 items-center justify-between'>
                 <Text className='text-white-500 font-bold '>{route.params?.name} </Text>
                 <Entypo name="dot-single" size={20} color="white" />
                 <Text className='text-white-500 capitalize'>{route.params?.owner.display_name}</Text>

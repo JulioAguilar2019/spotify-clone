@@ -20,8 +20,8 @@ export function useSpotifyAuth() {
   const [request, response, promptAsync] = useAuthRequest(
     {
       responseType: ResponseType.Token,
-      clientId: '17309fbac6b5495d9e07303b6554d587',
-      clientSecret: '6bd15a3ccd6f4746876ac8695268cd1d',
+      clientId: 'a25631427d034631b2da9253d3236fa4',
+      clientSecret: '84309dc31b0b412eaa8dad55aba6a272',
       scopes: [
         'user-read-email',
         'user-read-private',

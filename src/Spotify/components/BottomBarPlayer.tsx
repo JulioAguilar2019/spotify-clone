@@ -17,7 +17,7 @@ export const BottomBarPlayer = ({ data }: Props) => {
 
     const finalDuration = useFormatTime(data!.duration_ms)
     const { data: devicesData } = useGetAvailableDevicesQuery()
-    // console.log(devicesData)
+    console.log(devicesData)
     // handlePlay(handleplayData)
 
     const [fetchPlayer, { data: playerData }] = useLazyGetPlayerQuery()
@@ -28,6 +28,7 @@ export const BottomBarPlayer = ({ data }: Props) => {
     }, [isPlaying])
 
     const [handlePlay, { error, data: dataPlay }] = usePlayTrackMutation()
+    console.log({error})
 
     const handleplayData =
     {
