@@ -29,8 +29,8 @@ import { useGetUserDataQuery } from '../api/spotifyApi';
 export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeName }) {
 
 
-  const { error, status } = useGetUserDataQuery()
-
+  const { error } = useGetUserDataQuery()
+  // console.log(isError, error)
   return (
     <NavigationContainer
       linking={LinkingConfiguration}

@@ -27,7 +27,7 @@ export const SearchScreen = () => {
         <Container>
             <View className={'p-0 flex flex-row items-center bg-gray-50/40 border border-gray-300/20 rounded-lg mb-5 mx-3 mt-2 shadow-md'}>
                 <AntDesign name="search1" size={24} color="white" className={'flex-none mx-3'} />
-                <TextInput onChangeText={(text: string) => { setSearch(text) }} onSubmitEditing={onSearchSubmit}  className={'text-white flex-auto p-3 pl-0'} numberOfLines={1} multiline={false} clearButtonMode="always" placeholderTextColor="white" placeholder='Buscar...' />
+                <TextInput onChangeText={(text: string) => { setSearch(text) }} onSubmitEditing={onSearchSubmit} className={'text-white flex-auto p-3 pl-0'} numberOfLines={1} multiline={false} clearButtonMode="always" placeholderTextColor="white" placeholder='Buscar...' />
             </View>
 
             {
@@ -76,8 +76,8 @@ export const SearchScreen = () => {
                 </View>
             }
 
-            
-            
+
+
         </Container>
 
     )
