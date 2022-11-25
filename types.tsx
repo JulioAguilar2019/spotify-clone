@@ -20,6 +20,9 @@ export type RootStackParamList = {
   NotFound: undefined;
   PlayerScreen: TrackPlayList | undefined;
   PlayListScreen: PLayListItem | undefined;
+  SearchScreen: {
+    search: string
+  };
 };
 
 export type RootStackScreenProps<Screen extends keyof RootStackParamList> = NativeStackScreenProps<

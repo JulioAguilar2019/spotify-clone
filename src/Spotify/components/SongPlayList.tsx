@@ -29,7 +29,7 @@ export const SongPlayList = ({ playListId }: Props) => {
                             <Text className='text-white font-bold capitalize'>{dataPlayList?.track.name}</Text>
                             <Text className='text-white  capitalize'>{dataPlayList?.track.artists[0].name}</Text>
                         </View>
-                        <TouchableOpacity className='justify-self-end self-center'>
+                        <TouchableOpacity className='justify-self-end self-center ml-auto mr-3'>
                             <Entypo name="dots-three-vertical" size={20} color="white" />
                         </TouchableOpacity>
                     </View>
