@@ -9,6 +9,10 @@ interface Props {
 
 export const PlayListCard = ({ data }: Props) => {
     const navigation = useNavigation()
+    // data?.items.map((item) => {
+    //     console.log(item)
+    // })
+
 
     return (
         <FlatList
@@ -16,7 +20,7 @@ export const PlayListCard = ({ data }: Props) => {
             renderItem={({ item: dataPlayList }) => (
                 <View className='min-w-[180] max-h-[200]  bg-cover mx-2 '>
                     <TouchableOpacity
-                        onPress={() => navigation.navigate('PlayListScreen')}
+                        onPress={() => navigation.navigate('PlayListScreen', dataPlayList)}
                     >
                         <Image source={{ uri: dataPlayList?.images[0].url }} className='w-full h-[90%] rounded-lg bg-cover' />
                         <Text className='text-center' numberOfLines={1}>{dataPlayList?.name}</Text>
@@ -24,6 +28,7 @@ export const PlayListCard = ({ data }: Props) => {
                 </View>
             )}
             horizontal
+            keyExtractor={(item) => item.id}
             showsHorizontalScrollIndicator={false}
         >
         </FlatList>

@@ -5,3 +5,4 @@ export * from './SongControl';
 export * from './TopBarPlayer';
 export * from './BottomBarPlayer';
 export * from './TrackCard';
+export * from './SongPlayList';

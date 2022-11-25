@@ -6,6 +6,8 @@ import {
 } from 'expo-auth-session';
 import * as WebBrowser from 'expo-web-browser';
 import { useEffect } from 'react';
+import { useAppDispatch } from '../../store';
+import { setToken } from '../../store/authSlices';
 
 WebBrowser.maybeCompleteAuthSession();
 
@@ -40,7 +42,9 @@ export function useSpotifyAuth() {
         'user-follow-modify',
       ],
       usePKCE: false,
-      redirectUri: 'exp://192.168.0.4:19000',
+      redirectUri: makeRedirectUri({
+        scheme: 'myapp',
+      }),
     },
     discovery
   );
@@ -48,8 +52,8 @@ export function useSpotifyAuth() {
   useEffect(() => {
     if (response?.type === 'success') {
       const { access_token } = response.params;
-      // storeData(access_token);
-      console.log(response);
+      console.log(access_token);
+      storeData(access_token);
     }
   }, [response]);
 
@@ -67,7 +71,7 @@ export function useSpotifyAuth() {
 export const getToken = async () => {
   try {
     const token = (await AsyncStorage.getItem('@access_token')) || null;
-    return token;
+    return { token };
   } catch (e) {
     console.error('Error retrieving data', e);
   }

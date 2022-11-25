@@ -8,13 +8,10 @@ export interface User {
 
 interface authState {
   token: string | null;
-
-  userData: User | null;
 }
 
 const initialState: authState = {
   token: null,
-  userData: null,
 };
 
 export const authSlice = createSlice({
@@ -28,16 +25,7 @@ export const authSlice = createSlice({
     setToken: (state, action) => {
       state.token = action.payload.token;
     },
-    logout: (state) => {
-      state.token = null;
-
-      state.userData = null;
-    },
-
-    setUserData: (state, action) => {
-      state.userData = action.payload;
-    },
   },
 });
 
-export const { login, logout, setUserData, setToken } = authSlice.actions;
+export const { login, setToken } = authSlice.actions;

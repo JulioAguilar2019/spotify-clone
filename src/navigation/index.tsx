@@ -19,32 +19,26 @@ import LinkingConfiguration from './LinkingConfiguration';
 import { BottomTabNavigation } from './BottomTabNavigation';
 import { PlayerScreen, PlayListScreen } from '../screens';
 import { useSpotifyAuth, getToken } from '../auth/hooks/useSpotifyAuth';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useAppSelector, RootState, useAppDispatch } from '../store/store';
 import { LoginScreen } from '../auth/screens/LoginScreen';
 import { setToken } from '../store/authSlices';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useGetUserDataQuery } from '../api/spotifyApi';
 
 export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeName }) {
-  // const token = useAppSelector((state: RootState) => state.auth.token)
-  const dispatch = useAppDispatch()
-  useEffect(() => {
-    const SetToken2 = async () => {
-      const token = await getToken()
-      dispatch(setToken({
-        token: 'BQDF3YAQ38UA26pQpP8eFBylcJTwt5F7euvv4aHe5_b6ompxrSUXePpm0zyPsiLMs3tbrJ8RcNUmHdvxGmami1LoyOSyoIXaxX3t5TT05Y03hDRSSL6RO84NHTGFTpWm7OQjB'
-      }))
-    }
-    SetToken2()
 
-  }, [])
+
+  const { error } = useGetUserDataQuery()
+
   return (
     <NavigationContainer
       linking={LinkingConfiguration}
       theme={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-      {/* {
-        token ? <RootNavigator /> : <PublicStack />
-      } */}
-      <RootNavigator />
+      {
+        error ? <PublicStack /> : <RootNavigator />
+      }
+      {/* <RootNavigator /> */}
     </NavigationContainer>
   );
 }

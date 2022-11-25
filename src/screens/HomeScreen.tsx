@@ -23,7 +23,7 @@ export const HomeScreen = () => {
     // const algo = useAppSelector(state => state.spotifyApi)
     // console.log(algo)
 
-    const { data: userData, isLoading: userIsLoading, isError: userIsError } = useGetUserDataQuery()
+    const { data: userData, isLoading: userIsLoading, isError: userIsError, error } = useGetUserDataQuery()
     const { data: playListData } = useGetMyPlaylistsQuery()
 
 

@@ -45,7 +45,7 @@ export const BottomTabNavigation = () => {
             <TabNavigator.Screen
 
                 name="MyLibraryScreen"
-                component={LoginScreen}
+                component={MyLibraryScreen}
                 options={{
                     title: 'My Library',
                     headerShown: false,

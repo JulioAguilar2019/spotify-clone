@@ -10,7 +10,7 @@ export const ArtistCard = () => {
     const { data: ReleasesData, isLoading: ReleaseIsLoading, isError: ReleasesIsError } = useGetNewReleasesQuery(10)
     const artistIds = ReleasesData?.albums.items.map(item => item.artists.map(artist => artist.id))
     const ids = artistIds?.toString().replace(/,/gi, ',')
-    console.log(ids)
+    // console.log(ids)
     const { data: ArtistData, isLoading: ArtistIsLoading, isError: ArtistIsError } = useGetArtistsQuery(ids)
 
     return (

@@ -7,7 +7,7 @@ import { useGetRecentlyPlayedQuery, useGetTracksQuery } from '../../api/spotifyA
 
 export const TrackCard = () => {
     const navigation = useNavigation()
-    const { data: RecentlyData, isError } = useGetRecentlyPlayedQuery()
+    const { data: RecentlyData, isError } = useGetRecentlyPlayedQuery(undefined, { refetchOnMountOrArgChange: true })
     const ids = RecentlyData?.items.map(item => item?.track?.id).toString().replace(/,/gi, ',')
     const { data: tracksData } = useGetTracksQuery(ids)
 

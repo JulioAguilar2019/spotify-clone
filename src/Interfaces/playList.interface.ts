@@ -1,6 +1,6 @@
 export interface PlayList {
   href: string;
-  items: Item[];
+  items: PLayListItem[];
   limit: number;
   next: string;
   offset: number;
@@ -8,7 +8,7 @@ export interface PlayList {
   total: number;
 }
 
-export interface Item {
+export interface PLayListItem {
   collaborative: boolean;
   description: Description;
   external_urls: ExternalUrls;

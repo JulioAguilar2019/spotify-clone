@@ -4,25 +4,51 @@ import { AntDesign } from '@expo/vector-icons';
 import { FontAwesome } from '@expo/vector-icons';
 import { Feather } from '@expo/vector-icons';
 import { useFormatTime } from '../hooks/useFormatTime';
+import { TrackPlayList } from '../../Interfaces';
+import { useGetAvailableDevicesQuery, useLazyGetPlayerQuery, useNextTrackMutation, usePauseMutation, usePlayTrackMutation, usePreviousTrackMutation } from '../../api/spotifyApi';
+import { useState } from 'react';
 
 
 interface Props {
-    trackName: string | undefined
-    artistName: string | undefined
-    duration: number | undefined
+    data: TrackPlayList | undefined
 }
 
+export const BottomBarPlayer = ({ data }: Props) => {
 
-export const BottomBarPlayer = ({ trackName, artistName, duration }: Props) => {
 
-    const finalDuration = useFormatTime(duration)
+    const finalDuration = useFormatTime(data!.duration_ms)
+    const { data: devicesData } = useGetAvailableDevicesQuery()
+    // console.log(devicesData)
+    // handlePlay(handleplayData)
+
+    const [fetchPlayer, { data: playerData }] = useLazyGetPlayerQuery()
+
+    const [handlePlay, { error, data: dataPlay }] = usePlayTrackMutation()
+
+    const handleplayData =
+    {
+        deviceId: devicesData?.devices[1]?.id,
+        trackId: data?.uri,
+        position_ms: playerData?.progress_ms
+
+    }
+    const [handlePause] = usePauseMutation()
+    const [handleNext] = useNextTrackMutation()
+    const [handlePrevious] = usePreviousTrackMutation()
+
+    const togglePLayer = () => {
+        fetchPlayer()
+        playerData?.is_playing ? handlePause() : handlePlay(handleplayData)
+    }
+    // console.log(playerData.is_playing)
+
 
 
     return (
         <View className='flex flex-col w-full h-2/6 absolute bottom-0 left-0 right-0 p-5'>
             <View className='mb-2'>
-                <Text className='font-bold text-white'>{trackName}</Text>
-                <Text className='text-white'>{artistName}</Text>
+                <Text className='font-bold text-white'>{data?.name}</Text>
+                <Text className='text-white'>{data?.artists[0].name}</Text>
             </View>
             <View>
                 <Text className='text-center text-white'>Aqui debe ir el slider</Text>
@@ -36,13 +62,20 @@ export const BottomBarPlayer = ({ trackName, artistName, duration }: Props) => {
                     <TouchableOpacity>
                         <FontAwesome name="random" size={24} color="white" />
                     </TouchableOpacity>
-                    <TouchableOpacity>
+                    <TouchableOpacity
+                        onPress={() => handlePrevious()}
+                    >
                         <AntDesign name="stepbackward" size={30} color="white" />
                     </TouchableOpacity>
-                    <TouchableOpacity>
+                    <TouchableOpacity
+                        onPress={() => togglePLayer()}
+                    // disabled={isFetching}
+                    >
                         <AntDesign name="play" size={60} color="white" />
                     </TouchableOpacity>
-                    <TouchableOpacity>
+                    <TouchableOpacity
+                        onPress={() => handleNext()}
+                    >
                         <AntDesign name="stepforward" size={30} color="white" />
                     </TouchableOpacity>
                     <TouchableOpacity>
