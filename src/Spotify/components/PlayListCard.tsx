@@ -18,7 +18,7 @@ export const PlayListCard = ({ data }: Props) => {
         <FlatList
             data={data?.items}
             renderItem={({ item: dataPlayList }) => (
-                <View className='min-w-[180] max-h-[200]  bg-cover mx-2 '>
+                <View className='min-w-[180] max-h-[200] bg-cover mx-2 '>
                     <TouchableOpacity
                         onPress={() => navigation.navigate('PlayListScreen', dataPlayList)}
                     >
